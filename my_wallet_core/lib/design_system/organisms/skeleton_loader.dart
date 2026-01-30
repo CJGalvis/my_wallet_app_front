@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:my_wallet_core/providers/providers.dart';
 
-class SkeletonLoader extends StatefulWidget {
+class SkeletonLoader extends ConsumerStatefulWidget {
   const SkeletonLoader({
     super.key,
     required this.width,
@@ -13,10 +15,11 @@ class SkeletonLoader extends StatefulWidget {
   final double borderRadius;
 
   @override
-  State<SkeletonLoader> createState() => _SkeletonLoaderState();
+  ConsumerState<SkeletonLoader> createState() =>
+      _SkeletonLoaderState();
 }
 
-class _SkeletonLoaderState extends State<SkeletonLoader>
+class _SkeletonLoaderState extends ConsumerState<SkeletonLoader>
     with SingleTickerProviderStateMixin {
   late final AnimationController _controller;
 
@@ -38,15 +41,15 @@ class _SkeletonLoaderState extends State<SkeletonLoader>
 
   @override
   Widget build(BuildContext context) {
-    final isDark = Theme.of(context).brightness == Brightness.dark;
+    final isDark = ref.read(themeProvider.notifier).isDark(context);
 
-     final baseColor = isDark
-        ? const Color.fromARGB(131, 66, 66, 66)
-        : const Color.fromARGB(121, 224, 224, 224);
+    final baseColor = isDark
+        ? Theme.of(context).primaryColor
+        : Colors.grey.shade300;
 
     final highlightColor = isDark
-        ? const Color.fromARGB(122, 97, 97, 97)
-        : const Color.fromARGB(128, 245, 245, 245);
+        ? Theme.of(context).primaryColorDark
+        : Colors.grey.shade100;
 
     return AnimatedBuilder(
       animation: _controller,
