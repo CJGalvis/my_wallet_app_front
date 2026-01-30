@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:my_wallet_core/my_wallet_core.dart';
-
-import '../providers/records_provider.dart';
-import 'widgets.dart';
+import 'package:my_wallet_records/my_wallet_records.dart';
 
 class LastRecords extends ConsumerWidget {
   final String title;

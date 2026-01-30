@@ -2,10 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:my_wallet_core/helpers/format_helper.dart';
 import 'package:my_wallet_core/my_wallet_core.dart';
-import 'package:my_wallet_home/domain/models/record_item.dart';
-import 'package:my_wallet_home/presentation/providers/records_by_pocket_provider.dart';
-import 'package:my_wallet_home/presentation/widgets/item_record.dart';
 import 'package:my_wallet_pockets/domain/models/pocket_model.dart';
+import 'package:my_wallet_records/my_wallet_records.dart';
 
 class PocketScreen extends ConsumerStatefulWidget {
   static const String routeName = '/pocket';

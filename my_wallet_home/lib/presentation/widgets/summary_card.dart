@@ -2,8 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:my_wallet_core/helpers/format_helper.dart';
 import 'package:my_wallet_core/my_wallet_core.dart';
-
-import '../../domain/models/summary_type.dart';
+import 'package:my_wallet_records/my_wallet_records.dart';
 
 class SummaryCard extends ConsumerWidget {
   const SummaryCard({

@@ -1,3 +1,4 @@
+
 import 'summary_type.dart';
 
 class RecordItem {

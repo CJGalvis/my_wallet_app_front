@@ -21,6 +21,9 @@ dependencies:
   my_wallet_home:
     path: ../my_wallet_home
 
+  my_wallet_records:
+    path: ../my_wallet_records
+
 dev_dependencies:
   flutter_test:
     sdk: flutter

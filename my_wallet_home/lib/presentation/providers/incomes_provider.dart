@@ -1,7 +1,6 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:my_wallet_records/my_wallet_records.dart';
 
-import '../../domain/models/summary_type.dart';
-import 'records_provider.dart';
 
 final incomesProvider = Provider<double>((ref) {
   final records = ref.watch(recordsProvider);
