@@ -10,6 +10,7 @@ class HomeModelUi {
   final String latestRecords;
   final String labelShowMore;
   final String latestRecordsEmpty;
+  final String textErrorLoadPockets;
 
   HomeModelUi({
     required this.appBar,
@@ -23,6 +24,7 @@ class HomeModelUi {
     required this.latestRecords,
     required this.labelShowMore,
     required this.latestRecordsEmpty,
+    required this.textErrorLoadPockets,
   });
 }
 

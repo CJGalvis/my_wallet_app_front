@@ -20,6 +20,7 @@ class HomeMapper extends Mapper<HomeModelUi> {
       latestRecords: json['latestRecords'],
       labelShowMore: json['labelShowMore'],
       latestRecordsEmpty: json['latestRecordsEmpty'],
+      textErrorLoadPockets : json['textErrorLoadPockets'],
     );
   }
 
@@ -37,6 +38,7 @@ class HomeMapper extends Mapper<HomeModelUi> {
       'latestRecords': data.latestRecords,
       'labelShowMore': data.labelShowMore,
       'latestRecordsEmpty': data.latestRecordsEmpty,
+      'textErrorLoadPockets': data.textErrorLoadPockets,
     };
   }
 }

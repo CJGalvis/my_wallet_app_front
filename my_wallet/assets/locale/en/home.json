@@ -12,5 +12,6 @@
     "categoryExpenses": "Gastos por categoría",
     "latestRecords": "Últimos registros",
     "latestRecordsEmpty": "Sin registros aún...",
-    "labelShowMore": "Ver más"
+    "labelShowMore": "Ver más",
+    "textErrorLoadPockets": "Error al cargar tus bolsillos"
 }

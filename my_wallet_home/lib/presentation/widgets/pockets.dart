@@ -10,12 +10,14 @@ import 'widgets.dart';
 
 class Pockets extends ConsumerWidget {
   final String labelNewPocket;
+  final String textErrorLoadPockets;
   final ValueChanged<Pocket> onPressedPocket;
   final VoidCallback onPressedNewPocket;
 
   const Pockets({
     super.key,
     required this.labelNewPocket,
+    required this.textErrorLoadPockets,
     required this.onPressedPocket,
     required this.onPressedNewPocket,
   });
@@ -24,30 +26,13 @@ class Pockets extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final pocketAsync = ref.watch(pocketsProvider);
 
-    final isDark =
-        ref.read(themeProvider.notifier).isDark(context);
-
     return pocketAsync.when(
-      loading: () => Container(
-        decoration: Decorations.pocketBackgroundDecorations(isDark),
-        width: double.infinity,
-        height: 120,
-        child: Center(
-          child: CircularProgressIndicator.adaptive(),
-        ),
+      loading: () => PocketsContainer(
+        child: Center(child: CircularProgressIndicator.adaptive()),
       ),
-      error: (error, _) => Center(
-        child: Center(
-          child: Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Icon(Icons.account_balance_wallet, size: 50),
-                Text('Error al cargar tus bolsillos'),
-              ],
-            ),
-          ),
+      error: (error, _) => PocketsContainer(
+        child: DisplayInfo(
+          textDisplay: textErrorLoadPockets,
         ),
       ),
       data: (pockets) {
@@ -55,10 +40,7 @@ class Pockets extends ConsumerWidget {
             ? pockets.length
             : pockets.length + 1;
 
-        return Container(
-          decoration: Decorations.pocketBackgroundDecorations(isDark),
-          width: double.infinity,
-          height: 120,
+        return PocketsContainer(
           child: Padding(
             padding: const EdgeInsets.symmetric(vertical: 10.0),
             child: SizedBox(
@@ -94,20 +76,33 @@ class Pockets extends ConsumerWidget {
   }
 }
 
+class PocketsContainer extends ConsumerWidget {
+  final Widget child;
+
+  const PocketsContainer({super.key, required this.child});
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final isDark = ref.read(themeProvider.notifier).isDark(context);
+
+    return Container(
+      decoration: Decorations.pocketBackgroundDecorations(isDark),
+      width: double.infinity,
+      height: 120,
+      child: child,
+    );
+  }
+}
+
 class PocketItem extends ConsumerWidget {
   final Pocket model;
   final ValueChanged<Pocket>? onPressed;
 
-  const PocketItem({
-    super.key,
-    required this.model,
-    this.onPressed,
-  });
+  const PocketItem({super.key, required this.model, this.onPressed});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final isDark =
-        ref.read(themeProvider.notifier).isDark(context);
+    final isDark = ref.read(themeProvider.notifier).isDark(context);
 
     return GestureDetector(
       onTap: () => onPressed?.call(model),
@@ -148,10 +143,7 @@ class _PocketBalance extends StatelessWidget {
       fit: BoxFit.contain,
       child: Text(
         '\$ ${FormatHelper.currency(balance)}',
-        style: TextStyle(
-          fontSize: 18,
-          fontWeight: FontWeight.bold,
-        ),
+        style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
       ),
     );
   }
@@ -184,11 +176,7 @@ class _PocketIcon extends StatelessWidget {
       child: Container(
         padding: EdgeInsets.all(5),
         color: Colors.blueAccent,
-        child: Icon(
-          icon,
-          color: Colors.white,
-          size: 20,
-        ),
+        child: Icon(icon, color: Colors.white, size: 20),
       ),
     );
   }

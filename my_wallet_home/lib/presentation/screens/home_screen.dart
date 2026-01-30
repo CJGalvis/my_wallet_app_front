@@ -84,42 +84,41 @@ class _HomeView extends ConsumerWidget {
         ref.read(sessionManagerProvider).clearSession();
         args.onPressedExit.call();
       }),
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            Pockets(
-              labelNewPocket: model.newPocketLabel,
-              onPressedPocket: args.onPressedPocket,
-              onPressedNewPocket: args.onPressedNewPocket,
-            ),
-            SizedBox(height: padding10),
-            SummaryCard(
-              callback: args.onPressedIncomes,
-              type: SummaryType.incomes,
-              title: model.incomesLabel,
-              description: model.descriptionIncomes,
-              value: incomes,
-            ),
-            SizedBox(height: sizeBox20),
-            SummaryCard(
-              type: SummaryType.expenses,
-              title: model.expensesLabel,
-              description: model.descriptionExpenses,
-              value: expenses,
-              callback: args.onPressedExpenses,
-            ),
-            SizedBox(height: sizeBox20),
-            Balance(label: model.currentBalance),
-            SizedBox(height: sizeBox20),
-            LastRecords(
-              title: model.latestRecords,
-              labelEmpty: model.latestRecordsEmpty,
-              labelShowMore: model.labelShowMore,
-              onPressedShowMore: args.onPressedRecords,
-            ),
-            SizedBox(height: 100),
-          ],
-        ),
+      body: ListView(
+        children: [
+          Pockets(
+            textErrorLoadPockets: model.textErrorLoadPockets,
+            labelNewPocket: model.newPocketLabel,
+            onPressedPocket: args.onPressedPocket,
+            onPressedNewPocket: args.onPressedNewPocket,
+          ),
+          SizedBox(height: padding10),
+          SummaryCard(
+            callback: args.onPressedIncomes,
+            type: SummaryType.incomes,
+            title: model.incomesLabel,
+            description: model.descriptionIncomes,
+            value: incomes,
+          ),
+          SizedBox(height: sizeBox20),
+          SummaryCard(
+            type: SummaryType.expenses,
+            title: model.expensesLabel,
+            description: model.descriptionExpenses,
+            value: expenses,
+            callback: args.onPressedExpenses,
+          ),
+          SizedBox(height: sizeBox20),
+          Balance(label: model.currentBalance),
+          SizedBox(height: sizeBox20),
+          LastRecords(
+            title: model.latestRecords,
+            labelEmpty: model.latestRecordsEmpty,
+            labelShowMore: model.labelShowMore,
+            onPressedShowMore: args.onPressedRecords,
+          ),
+          SizedBox(height: 100),
+        ],
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: args.onPressedNewRecord,
