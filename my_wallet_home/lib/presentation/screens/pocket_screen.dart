@@ -22,7 +22,7 @@ class _PocketScreenState extends ConsumerState<PocketScreen> {
   @override
   Widget build(BuildContext context) {
     final isDark = ref
-        .read(themeAppProvider.notifier)
+        .read(themeProvider.notifier)
         .isDark(context);
 
     final records = ref.watch(

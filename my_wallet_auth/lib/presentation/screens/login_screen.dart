@@ -62,11 +62,11 @@ class _LoginScreenState extends ConsumerState<LoginScreen>
   void showLoading() => _loading.show();
 
   @override
-  void showError(String message) {
-    widget.args.onLoginError?.call(message);
+  void showError(ErrorItem error) {
+    widget.args.onLoginError?.call(error);
     MessageHelper.showSnackBar(
       context,
-      message: message,
+      message: error.description,
       isError: true,
     );
   }

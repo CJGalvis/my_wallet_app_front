@@ -1,12 +1,9 @@
-import 'package:riverpod_annotation/riverpod_annotation.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../domain/models/summary_type.dart';
 import 'records_provider.dart';
 
-part 'incomes_provider.g.dart';
-
-@riverpod
-double incomes(Ref ref) {
+final incomesProvider = Provider<double>((ref) {
   final records = ref.watch(recordsProvider);
   if (records.isEmpty) return 0;
   final balance = records
@@ -14,4 +11,4 @@ double incomes(Ref ref) {
       .map((p) => p.value)
       .reduce((a, b) => a + b);
   return balance;
-}
+});

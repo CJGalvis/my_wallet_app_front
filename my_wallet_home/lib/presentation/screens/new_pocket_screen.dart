@@ -70,10 +70,10 @@ class _NewPocketScreenState extends ConsumerState<NewPocketScreen>
   void hideLoading() => _loading.hide();
 
   @override
-  void showError(String message) {
+  void showError(ErrorItem error) {
     MessageHelper.showSnackBar(
       context,
-      message: message,
+      message: error.description,
       isError: true,
     );
   }
@@ -262,7 +262,7 @@ class PocketPreview extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final isDark = ref
-        .read(themeAppProvider.notifier)
+        .read(themeProvider.notifier)
         .isDark(context);
     final newPocket = ref.watch(newPocketProvider);
 

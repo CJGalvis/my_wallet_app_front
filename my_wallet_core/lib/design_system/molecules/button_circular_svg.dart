@@ -19,8 +19,7 @@ class ButtonCircularSVG extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final isDark =
-        ref.read(themeAppProvider.notifier).isDark(context);
+    final isDark = ref.read(themeProvider.notifier).isDark(context);
 
     return Column(
       children: [
@@ -45,10 +44,7 @@ class ButtonCircularSVG extends ConsumerWidget {
             ),
           ),
         ),
-        Text(
-          bottomLabel,
-          style: TextStyle(color: Colors.white),
-        )
+        Text(bottomLabel, style: TextStyle(color: Colors.white)),
       ],
     );
   }

@@ -57,11 +57,11 @@ class _WellcomeScreenState extends ConsumerState<WellcomeScreen>
   }
 
   @override
-  void showError(String message) {
-    widget.args.onGoogleAuthError?.call(message);
+  void showError(ErrorItem error) {
+    widget.args.onGoogleAuthError?.call(error);
     MessageHelper.showSnackBar(
       context,
-      message: message,
+      message: error.description,
       isError: true,
     );
   }

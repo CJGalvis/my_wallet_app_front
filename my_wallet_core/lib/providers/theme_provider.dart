@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:riverpod_annotation/riverpod_annotation.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-part 'theme_provider.g.dart';
+final themeProvider = NotifierProvider<ThemeNotifier, ThemeMode>(
+  ThemeNotifier.new,
+);
 
-@riverpod
-class ThemeApp extends _$ThemeApp {
+class ThemeNotifier extends Notifier<ThemeMode> {
   @override
   ThemeMode build() {
     return ThemeMode.system;
@@ -13,8 +14,7 @@ class ThemeApp extends _$ThemeApp {
   bool isDark(BuildContext context) {
     return state == ThemeMode.dark ||
         (state == ThemeMode.system &&
-            MediaQuery.of(context).platformBrightness ==
-                Brightness.dark);
+            Theme.of(context).brightness == Brightness.dark);
   }
 
   void setTheme(ThemeMode mode) {

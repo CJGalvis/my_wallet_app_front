@@ -17,7 +17,7 @@ class Balance extends ConsumerWidget {
     final balance = ref.watch(balanceProvider);
     
     final isDark =
-        ref.read(themeAppProvider.notifier).isDark(context);
+        ref.read(themeProvider.notifier).isDark(context);
 
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 10),

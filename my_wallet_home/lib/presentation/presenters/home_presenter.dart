@@ -20,9 +20,11 @@ class HomePresenter {
     final List<Pocket>? data = response.$2;
 
     if (error != null) {
-      _interface.showError(error.message);
+      _interface.showError(error);
     }
 
-    _interface.uploadedData(data ?? []);
+    if (data != null) {
+      _interface.uploadedData(data);
+    }
   }
 }

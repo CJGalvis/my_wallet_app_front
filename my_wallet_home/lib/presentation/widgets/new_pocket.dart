@@ -15,7 +15,7 @@ class NewPocket extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final isDark =
-        ref.read(themeAppProvider.notifier).isDark(context);
+        ref.read(themeProvider.notifier).isDark(context);
 
     return GestureDetector(
       onTap: onPressed,

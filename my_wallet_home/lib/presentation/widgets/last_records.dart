@@ -24,7 +24,7 @@ class LastRecords extends ConsumerWidget {
     final lastRecords = ref.watch(recordsProvider);
 
     final isDark =
-        ref.watch(themeAppProvider.notifier).isDark(context);
+        ref.watch(themeProvider.notifier).isDark(context);
 
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 10),

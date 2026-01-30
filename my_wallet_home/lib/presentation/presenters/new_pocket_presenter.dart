@@ -27,12 +27,12 @@ class NewPocketPresenter {
     final Pocket? data = response.$2;
 
     if (data != null) {
-      ref.read(pocketsCloudProvider.notifier).addPocket(data);
+      ref.read(pocketsProvider.notifier).addPocket(data);
       _interface.createdSuccess();
     }
 
     if (error != null) {
-      _interface.showError(error.message);
+      _interface.showError(error);
     }
 
     _interface.hideLoading();

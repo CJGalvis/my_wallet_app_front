@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:my_wallet_core/my_wallet_core.dart';
 
 import '../../config/auth_config.dart';
 
@@ -7,7 +8,7 @@ class RegisterArgs {
   final AuthConfig config;
   final VoidCallback onRegisterSuccess;
   final VoidCallback onAlreadyAccount;
-  final ValueChanged<String>? onRegisterError;
+  final ValueChanged<ErrorItem>? onRegisterError;
 
   RegisterArgs({
     required this.language,

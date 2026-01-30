@@ -1,31 +1,26 @@
-import 'package:riverpod_annotation/riverpod_annotation.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../domain/models/pocket_model.dart';
 
-part 'new_pocket_provider.g.dart';
+final newPocketProvider = NotifierProvider<NewPocketNotifier, Pocket>(
+  NewPocketNotifier.new,
+);
 
-@riverpod
-class NewPocket extends _$NewPocket {
+class NewPocketNotifier extends Notifier<Pocket> {
   @override
   Pocket build() {
     return Pocket.initial();
   }
 
   void setType(String value) {
-    state = state.copyWith(
-      type: value,
-    );
+    state = state.copyWith(type: value);
   }
 
   void setName(String value) {
-    state = state.copyWith(
-      name: value,
-    );
+    state = state.copyWith(name: value);
   }
 
   void setBalance(double value) {
-    state = state.copyWith(
-      balance: value,
-    );
+    state = state.copyWith(balance: value);
   }
 }

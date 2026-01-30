@@ -1,12 +1,14 @@
-import 'package:riverpod_annotation/riverpod_annotation.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../domain/models/record_item.dart';
 import '../../domain/models/summary_type.dart';
 
-part 'records_provider.g.dart';
+final recordsProvider =
+    NotifierProvider<RecordsNotifier, List<RecordItem>>(
+      RecordsNotifier.new,
+    );
 
-@riverpod
-class RecordsNotifier extends _$RecordsNotifier {
+class RecordsNotifier extends Notifier<List<RecordItem>> {
   @override
   List<RecordItem> build() {
     return [

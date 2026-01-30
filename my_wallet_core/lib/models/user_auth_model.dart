@@ -9,9 +9,9 @@ class UserAuth {
     required this.photo,
   });
 
-  factory UserAuth.initial() => UserAuth(
-        name: '',
-        email: '',
-        photo: '',
-      );
+  factory UserAuth.fromJson(Map<String, dynamic> json) => UserAuth(
+    name: json['name'],
+    email: json['email'],
+    photo: json['photo'],
+  );
 }

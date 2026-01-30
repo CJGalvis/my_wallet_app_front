@@ -66,11 +66,11 @@ class _RegisterScreenState extends ConsumerState<RegisterScreen>
   void registerSuccess() => widget.args.onRegisterSuccess.call();
 
   @override
-  void showError(String message) {
-    widget.args.onRegisterError?.call(message);
+  void showError(ErrorItem error) {
+    widget.args.onRegisterError?.call(error);
     MessageHelper.showSnackBar(
       context,
-      message: message,
+      message: error.description,
       isError: true,
     );
   }

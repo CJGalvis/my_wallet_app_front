@@ -1,11 +1,13 @@
-import 'package:riverpod_annotation/riverpod_annotation.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../domain/models/summary_type.dart';
 
-part 'type_record_provider.g.dart';
+final summaryTypeSelectedProvider =
+    NotifierProvider<SummaryTypeSelectedNotifier, SummaryType>(
+      SummaryTypeSelectedNotifier.new,
+    );
 
-@riverpod
-class SummaryTypeSelected extends _$SummaryTypeSelected {
+class SummaryTypeSelectedNotifier extends Notifier<SummaryType> {
   @override
   SummaryType build() {
     return SummaryType.incomes;

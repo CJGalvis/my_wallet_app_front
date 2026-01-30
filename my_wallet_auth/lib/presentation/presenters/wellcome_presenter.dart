@@ -25,7 +25,7 @@ class WellcomePresenter {
     }
 
     if (error != null) {
-      _interface.showError(error.message);
+      _interface.showError(error);
     }
 
     _interface.hideLoading();

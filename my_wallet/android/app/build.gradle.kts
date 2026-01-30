@@ -6,10 +6,6 @@ plugins {
     id("com.google.gms.google-services")
 }
 
-dependencies {
-    implementation(platform("com.google.firebase:firebase-bom:34.6.0"))
-}
-
 android {
     namespace = "com.example.my_wallet"
     compileSdk = flutter.compileSdkVersion

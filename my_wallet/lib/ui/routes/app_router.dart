@@ -1,15 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:my_wallet_auth/my_wallet_auth.dart';
 import 'package:my_wallet_home/my_wallet_home.dart';
-import 'package:riverpod_annotation/riverpod_annotation.dart';
-
 import 'routes.dart';
 
-part 'app_router.g.dart';
-
-@riverpod
-GoRouter appRouter(Ref ref) {
+final routerProvider = Provider<GoRouter>((ref) {
   final key = ref.watch(navigatorKeyProvider);
 
   return GoRouter(
@@ -79,8 +75,7 @@ GoRouter appRouter(Ref ref) {
       ),
     ],
   );
-}
+});
 
-@riverpod
-GlobalKey<NavigatorState> navigatorKey(Ref ref) =>
-    GlobalKey<NavigatorState>();
+final navigatorKeyProvider = Provider<GlobalKey<NavigatorState>>(
+    (ref) => GlobalKey<NavigatorState>());

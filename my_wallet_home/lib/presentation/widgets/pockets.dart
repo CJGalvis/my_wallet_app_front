@@ -5,7 +5,7 @@ import 'package:my_wallet_core/my_wallet_core.dart';
 import '../../domain/models/pocket_model.dart';
 import '../helpers/constants.dart';
 import '../helpers/format_helper.dart';
-import '../providers/pockets_cloud_provider.dart';
+import '../providers/pockets_provider.dart';
 import 'widgets.dart';
 
 class Pockets extends ConsumerWidget {
@@ -22,10 +22,10 @@ class Pockets extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final pocketAsync = ref.watch(pocketsCloudProvider);
+    final pocketAsync = ref.watch(pocketsProvider);
 
     final isDark =
-        ref.read(themeAppProvider.notifier).isDark(context);
+        ref.read(themeProvider.notifier).isDark(context);
 
     return pocketAsync.when(
       loading: () => Container(
@@ -107,7 +107,7 @@ class PocketItem extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final isDark =
-        ref.read(themeAppProvider.notifier).isDark(context);
+        ref.read(themeProvider.notifier).isDark(context);
 
     return GestureDetector(
       onTap: () => onPressed?.call(model),

@@ -51,10 +51,10 @@ class _HomeScreenState extends ConsumerState<HomeScreen>
   }
 
   @override
-  void showError(String message) {
+  void showError(ErrorItem error) {
     MessageHelper.showSnackBar(
       context,
-      message: message,
+      message: error.description,
       isError: true,
     );
   }
@@ -62,7 +62,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen>
   @override
   void uploadedData(List<Pocket> pockets) {
     if (!mounted) return;
-    ref.read(pocketsCloudProvider.notifier).setData(pockets);
+    ref.read(pocketsProvider.notifier).loadPockets(pockets);
   }
 }
 
@@ -77,7 +77,7 @@ class _HomeView extends ConsumerWidget {
     final userSession = ref.watch(userSessionProvider);
     final incomes = ref.watch(incomesProvider);
     final expenses = ref.watch(expensesProvider);
-    final themeMode = ref.watch(themeAppProvider);
+    final themeMode = ref.watch(themeProvider);
 
     return Scaffold(
       appBar: _buildAppBar(userSession, themeMode, context, () {
@@ -183,15 +183,13 @@ class _ThemeModeButton extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final isDark = ref
-        .watch(themeAppProvider.notifier)
-        .isDark(context);
+    final isDark = ref.watch(themeProvider.notifier).isDark(context);
 
     return IconButton(
       icon: Icon(isDark ? Icons.light_mode : Icons.dark_mode),
       onPressed: () {
         ref
-            .read(themeAppProvider.notifier)
+            .read(themeProvider.notifier)
             .setTheme(isDark ? ThemeMode.light : ThemeMode.dark);
       },
     );
