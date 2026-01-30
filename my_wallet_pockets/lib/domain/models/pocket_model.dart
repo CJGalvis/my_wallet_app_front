@@ -24,6 +24,7 @@ class Pocket {
   );
 
   Pocket copyWith({
+    String? id,
     String? type,
     String? name,
     String? owner,

@@ -52,6 +52,13 @@ class MocksResponse {
               'balance': 120000,
               'owner': user1,
               'created': DateTime.now().toString(),
+            },
+            {
+              'type': 'Efectivo',
+              'name': 'Sueldo',
+              'balance': 300000,
+              'owner': user1,
+              'created': DateTime.now().toString(),
             }
           ]
         ));

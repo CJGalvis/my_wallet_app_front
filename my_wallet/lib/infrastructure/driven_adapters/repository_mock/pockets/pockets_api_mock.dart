@@ -13,13 +13,15 @@ class PocketsApiMock extends PocketsGateway {
 
   @override
   Future<(ErrorItem?, Pocket?)> createPocket(Pocket pocket) async {
-    await Future.delayed(Duration(seconds: 1));
-    return Future.value((null, null));
+    await Future.delayed(Duration(seconds: 3));
+    final newPocket =
+        pocket.copyWith(id: DateTime.timestamp().toString());
+    return Future.value((null, newPocket));
   }
 
   @override
   Future<(ErrorItem?, List<Pocket>?)> getPockets() async {
-     await Future.delayed(Duration(seconds: 2));
+    await Future.delayed(Duration(seconds: 2));
     final session = await _sessionManager.getUserSession();
 
     final (ErrorItem?, List<Map<String, dynamic>>?) data =

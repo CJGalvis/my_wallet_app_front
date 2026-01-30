@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:my_wallet_core/my_wallet_core.dart';
+import 'package:my_wallet_pockets/domain/models/models.dart';
 
 import '../args/new_pocket_args.dart';
 import '../interfaces/new_pocket_interface.dart';
@@ -13,10 +14,7 @@ class NewPocketScreen extends ConsumerStatefulWidget {
   static const String routeName = '/new-pocket';
   final NewPocketArgs args;
 
-  const NewPocketScreen({
-    super.key,
-    required this.args,
-  });
+  const NewPocketScreen({super.key, required this.args});
 
   @override
   ConsumerState<NewPocketScreen> createState() =>
@@ -58,7 +56,8 @@ class _NewPocketScreenState extends ConsumerState<NewPocketScreen>
   }
 
   @override
-  void createdSuccess() {
+  void createdSuccess(Pocket newPocket) {
+    ref.read(pocketsProvider.notifier).addPocket(newPocket);
     widget.args.createdSuccess.call();
   }
 
@@ -169,7 +168,7 @@ class NewPocketView extends ConsumerWidget {
                       callback: () {
                         FocusScope.of(context).unfocus();
                         if (!presenter.isValidForm()) return;
-                        presenter.createPocket(ref, newPocket);
+                        presenter.createPocket(newPocket);
                       },
                     ),
                   ],
@@ -260,9 +259,7 @@ class PocketPreview extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final isDark = ref
-        .read(themeProvider.notifier)
-        .isDark(context);
+    final isDark = ref.read(themeProvider.notifier).isDark(context);
     final newPocket = ref.watch(newPocketProvider);
 
     return Container(
